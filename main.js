@@ -57,21 +57,19 @@ const posts = [
 ];
 
 
-function innerPost() {
+function CreatedPost() {
 
     posts.forEach(element => {
-        let dataPost = new Date(element.created);
-        let mesiDiDifferenza = differenzaMesi(element.created);
 
         container.innerHTML += `<div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src=${element.author.image} alt="${element.author.name}>                    
+                        <img class="profile-pic" src=${element.author.image} alt="${element.author.name}">                    
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${element.author.name}</div>
-                        <div class="post-meta__time">${mesiDiDifferenza} mesi fa</div>
+                        <div class="post-meta__time">${calcMonth(new Date(element.created))} mesi fa</div>
                     </div>                    
                 </div>
             </div>
@@ -96,11 +94,11 @@ function innerPost() {
     });
 }
 
-function differenzaMesi(dataDelPost) {
+function calcMonth(date) {
     let today = new Date();
 
-    let yearPost = dataPost.getFullYear();
-    let monthPost = dataPost.getMonth();
+    let yearPost = date.getFullYear();
+    let monthPost = date.getMonth();
 
     let yearToday = today.getFullYear();
     let monthToday = today.getMonth();
@@ -114,6 +112,5 @@ function differenzaMesi(dataDelPost) {
 
 let container = document.getElementById('container');
 
-let index = 0;
 
-innerPost();
+CreatedPost();
