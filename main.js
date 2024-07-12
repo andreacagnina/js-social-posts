@@ -56,22 +56,26 @@ const posts = [
     }
 ];
 
-function post() {
-    container.innerHTML += `<div class="post">
+
+function innerPost() {
+    posts.forEach(element => {
+        index++;
+
+        container.innerHTML += `<div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="https://unsplash.it/300/300?image=15" alt="Phil Mangione">                    
+                        <img class="profile-pic" src=${authorImage} alt="${authorName}>                    
                     </div>
                     <div class="post-meta__data">
-                        <div class="post-meta__author">Phil Mangione</div>
-                        <div class="post-meta__time">4 mesi fa</div>
+                        <div class="post-meta__author">${authorName}</div>
+                        <div class="post-meta__time">${mesiDiDifferenza} mesi fa</div>
                     </div>                    
                 </div>
             </div>
-            <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
+            <div class="post__text">${content}</div>
             <div class="post__image">
-                <img src="https://unsplash.it/600/300?image=171" alt="">
+                <img src="${media}" alt="">
             </div>
             <div class="post__footer">
                 <div class="likes js-likes">
@@ -82,12 +86,53 @@ function post() {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div> 
             </div>            
         </div>`
+    });
+}
+
+function differenzaMesi(dataDelPost) {
+    let today = new Date();
+
+    let yearPost = dataPost.getFullYear();
+    let monthPost = dataPost.getMonth();
+
+    let yearToday = today.getFullYear();
+    let monthToday = today.getMonth();
+
+    let diffYears = yearToday - yearPost;
+    let diffMonth = diffYears * 12 + monthToday - monthPost;
+
+    return diffMonth
+
 }
 
 let container = document.getElementById('container');
-post();
+
+let index = 0;
+
+
+let content = posts[index].content;
+console.log(content);
+let media = posts[index].media;
+console.log(media);
+let likes = posts[index].likes;
+console.log(likes);
+let authorName = posts[index].author.name;
+console.log(authorName);
+let authorImage = posts[index].author.image;
+console.log(authorImage)
+let created = posts[index].created;
+console.log(created);
+
+
+let dataPost = new Date(created);
+
+
+let mesiDiDifferenza = differenzaMesi(created);
+console.log(mesiDiDifferenza)
+
+innerPost();
