@@ -61,6 +61,7 @@ function innerPost() {
 
     posts.forEach(element => {
         let dataPost = new Date(element.created);
+        let mesiDiDifferenza = differenzaMesi(element.created);
 
         container.innerHTML += `<div class="post">
             <div class="post__header">
@@ -114,10 +115,5 @@ function differenzaMesi(dataDelPost) {
 let container = document.getElementById('container');
 
 let index = 0;
-
-
-
-let mesiDiDifferenza = differenzaMesi(element.created);
-console.log(mesiDiDifferenza)
 
 innerPost();
