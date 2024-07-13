@@ -122,17 +122,27 @@ console.log(likeButton)
 
 likeButton.forEach(element => {
     element.addEventListener("click", function () {
-        element.classList.add('like-button--liked');
         let buttonId = element.getAttribute('data-postid');
         let counter = document.getElementById(`like-counter-${buttonId}`)
-        console.log(counter)
 
-        if (!arrayId.includes(`${buttonId}`)) {
-            arrayId.push(`${buttonId}`)
+        if (!element.classList.contains('like-button--liked')) {
+            element.classList.add('like-button--liked');
             counter.innerHTML++
-            console.log(arrayId)
+            console.log(counter)
 
+            if (!arrayId.includes(`${buttonId}`)) {
+                arrayId.push(`${buttonId}`)
+                console.log(arrayId)
+
+            }
         }
+
+        else {
+            element.classList.remove('like-button--liked');
+            counter.innerHTML--
+        }
+
+
 
     })
 });
