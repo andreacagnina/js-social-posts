@@ -129,6 +129,7 @@ likeButton.forEach(element => {
 
         if (!arrayId.includes(`${buttonId}`)) {
             arrayId.push(`${buttonId}`)
+            counter.innerHTML++
             console.log(arrayId)
 
         }
