@@ -8,7 +8,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "created": "2021-06-25"
+        "created": "2021-06-25",
     },
     {
         "id": 2,
@@ -61,6 +61,7 @@ function CreatedPost() {
 
     posts.forEach(element => {
 
+
         container.innerHTML += `<div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
@@ -80,13 +81,13 @@ function CreatedPost() {
                         <div class="post__footer">
                         <div class="likes js-likes">
                         <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1" id="btn">
+                        <a class="like-button  js-like-button" href="#${element.id}" data-postid="${element.id}" id="btn">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                         </a>
                         </div>
                         <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+                        Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone
                         </div>
                         </div> 
                         </div>            
@@ -111,14 +112,26 @@ function calcMonth(date) {
 }
 
 let container = document.getElementById('container');
-CreatedPost();
+CreatedPost()
 
 
+let likeButton = document.querySelectorAll('.like-button.js-like-button');
+let arrayId = [];
 
-let btn = document.getElementById('btn');
-document.getElementById("btn").addEventListener("click", function () {
-    btn.classList.add('color-red');
+console.log(likeButton)
 
+likeButton.forEach(element => {
+    element.addEventListener("click", function () {
+        element.classList.add('like-button--liked');
+        let buttonId = element.getAttribute('data-postid');
+        let counter = document.getElementById(`like-counter-${buttonId}`)
+        console.log(counter)
+
+        if ()
+
+    })
 });
+
+
 
 
